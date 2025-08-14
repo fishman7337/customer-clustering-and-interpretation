@@ -3,7 +3,7 @@
 ## Project Overview
 This project applies **unsupervised machine learning** techniques to segment customers based on demographics and spending behaviour. By identifying distinct customer groups, the analysis enables more effective **marketing strategies**, **personalised recommendations**, and **resource allocation**.
 
-## 🛠 Features
+## Features
 - **Data Preprocessing & Cleaning**
   - Checked for missing and duplicated data
   - Created dummy variables

@@ -7,7 +7,7 @@ authors:
     given-names: "Kun Ming"
 version: "0.1.0"
 date-released: "2026-04-29"
-repository-code: "https://github.com/fishman7337/customer-clustering-and-interpretation"
+repository-code: "https://github.com/fishman7337/sp-daaa-aiml-ca2-customer-clustering-and-interpretation"
 keywords:
   - customer segmentation
   - clustering

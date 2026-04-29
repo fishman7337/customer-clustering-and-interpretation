@@ -106,3 +106,7 @@ the test suite verifies that the split files recombine back to the original cell
 Raw data, trained models, and generated reports are excluded from version control by
 default. Commit those artifacts only when their licensing, privacy, and assessment
 requirements are clear.
+
+## License
+
+This project is released under the [MIT License](LICENSE).

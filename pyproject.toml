@@ -16,6 +16,7 @@ keywords = ["customer-segmentation", "clustering", "machine-learning", "mlops"]
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Education",
+  "License :: OSI Approved :: MIT License",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
@@ -30,8 +31,8 @@ dependencies = [
 ]
 
 [project.urls]
-Repository = "https://github.com/fishman7337/customer-clustering-and-interpretation"
-Documentation = "https://github.com/fishman7337/customer-clustering-and-interpretation/tree/main/docs"
+Repository = "https://github.com/fishman7337/sp-daaa-aiml-ca2-customer-clustering-and-interpretation"
+Documentation = "https://github.com/fishman7337/sp-daaa-aiml-ca2-customer-clustering-and-interpretation/tree/main/docs"
 
 [project.optional-dependencies]
 notebook = [

@@ -6,6 +6,7 @@ All notable changes to this project will be documented here.
 
 ### Added
 
+- README files for every tracked project folder.
 - Derived smaller notebooks under `notebooks/sections/` while retaining the full original
   notebook.
 - Notebook split verification test that confirms the section notebooks preserve all cells in
@@ -20,6 +21,7 @@ All notable changes to this project will be documented here.
 
 ### Changed
 
+- Changed project licensing from all-rights-reserved to MIT.
 - Moved the original notebook into `notebooks/customer_segmentation_analysis.ipynb`.
 - Moved the presentation into `docs/presentation/customer_segmentation_presentation.pptx`.
 - Updated notebook paths to use `data/raw/` and `models/`.

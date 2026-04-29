@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+title: "Customer Segmentation and Interpretation"
+message: "If you use or reference this project, please cite it using this metadata."
+type: software
+authors:
+  - family-names: "Goh"
+    given-names: "Kun Ming"
+version: "0.1.0"
+date-released: "2026-04-29"
+repository-code: "https://github.com/fishman7337/customer-clustering-and-interpretation"
+keywords:
+  - customer segmentation
+  - clustering
+  - unsupervised learning
+  - MLOps

@@ -1,37 +1,104 @@
-# Customer Clustering
+# Customer Segmentation and Interpretation
 
-## Project Overview
-This project applies **unsupervised machine learning** techniques to segment customers based on demographics and spending behaviour. By identifying distinct customer groups, the analysis enables more effective **marketing strategies**, **personalised recommendations**, and **resource allocation**.
+Production-ready repository for a customer clustering study using unsupervised machine
+learning. The original academic notebook is preserved, while the reusable workflow is now
+packaged, tested, documented, and protected by CI checks.
 
-## Features
-- **Data Preprocessing & Cleaning**
-  - Checked for missing and duplicated data
-  - Created dummy variables
-  - Removed outliers
-- **Exploratory Data Analysis**
-  - Univariate & bivariate analysis
-  - Feature scaling for clustering algorithms
-- **Clustering Models**
-  - **K-Means**
-  - **Agglomerative Clustering**
-  - **DBSCAN**
-- **Model Evaluation**
-  - Cluster profiling & interpretation
-  - Reverse scaling for real-world insights
+## Academic Context
 
-## Key Insights
-- **Cluster 0**: Lowest income group with lowest spending  
-- **Cluster 1**: Younger demographic with moderate income and spending  
-- **Cluster 2**: High income and high spending  
-- **Cluster 3**: High income with low spending  
-- **Cluster 4**: Older demographic with moderate income and spending  
-- **Cluster 5**: Low income with high spending  
+This project was completed under Singapore Polytechnic, School of Computing, Diploma in
+Applied AI & Analytics. It was submitted for the AI & Machine Learning module (ST1511),
+CA2 Part B, by Goh Kun Ming, DAAA student, in AY24/25 Year 1 Semester 2. The lecturer was
+Adjunct Lecturer Tai Hock Lin (Andy).
 
-## Business Implications
-- Identify **premium customers** for loyalty programs
-- Develop **targeted promotions** for low-spending high-income segments
-- Tailor products for **age-based preferences**
+## What This Project Does
 
-## Tech Stack
-- **Python** (Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn)
-- **Jupyter Notebook** for development and analysis
+The project segments customers using demographic and spending behavior features. The
+main clustering workflow focuses on:
+
+- Data validation and preprocessing.
+- Outlier handling with the IQR method.
+- Feature scaling with standardization.
+- K-Means clustering with six customer segments by default.
+- Cluster evaluation using silhouette, Davies-Bouldin, Calinski-Harabasz, and inertia.
+- Model and report artifact generation through a command line interface.
+
+## Repository Layout
+
+```text
+.
+├── .github/workflows/        # CI for tests, linting, and security checks
+├── data/                     # Local data drop zone; raw data is intentionally ignored
+├── docs/                     # Project, model, MLOps, data, and governance documentation
+├── models/                   # Generated model artifacts; ignored by git
+├── notebooks/                # Original exploratory academic notebook
+├── reports/                  # Generated metrics, labelled outputs, and figures
+├── src/customer_segmentation # Tested Python package and CLI
+└── tests/                    # Pytest suite
+```
+
+## Quick Start
+
+Create a virtual environment and install the development dependencies:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r requirements-dev.txt
+```
+
+Place the CA2 customer CSV at:
+
+```text
+data/raw/CA2-Customer-Data.csv
+```
+
+Train the model:
+
+```powershell
+customer-segmentation train --data data/raw/CA2-Customer-Data.csv
+```
+
+Default outputs:
+
+- `models/customer_segmentation_kmeans.joblib`
+- `reports/metrics.json`
+- `reports/customer_segments.csv`
+
+## Development Checks
+
+Run the same local checks that CI runs:
+
+```powershell
+ruff check .
+pytest
+bandit -c pyproject.toml -r src
+pip-audit --skip-editable .
+```
+
+## Notebook
+
+The original notebook is available at
+`notebooks/customer_segmentation_analysis.ipynb`. It now points to the normalized project
+folders:
+
+- Input data: `../data/raw/CA2-Customer-Data.csv`
+- Saved models: `../models/`
+
+## Documentation
+
+- [Project context](docs/PROJECT_CONTEXT.md)
+- [Data contract](docs/DATA.md)
+- [Model card](docs/MODEL_CARD.md)
+- [MLOps workflow](docs/MLOPS.md)
+- [Repository structure](docs/REPOSITORY_STRUCTURE.md)
+- [Contributing guide](CONTRIBUTING.md)
+- [Security policy](SECURITY.md)
+- [Code of conduct](CODE_OF_CONDUCT.md)
+
+## Governance
+
+Raw data, trained models, and generated reports are excluded from version control by
+default. Commit those artifacts only when their licensing, privacy, and assessment
+requirements are clear.

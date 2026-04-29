@@ -62,7 +62,7 @@ testpaths = ["tests"]
 [tool.ruff]
 line-length = 100
 src = ["src", "tests"]
-extend-exclude = ["notebooks/*.ipynb"]
+extend-exclude = ["notebooks/**/*.ipynb"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "SIM"]

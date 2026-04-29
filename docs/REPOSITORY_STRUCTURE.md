@@ -17,7 +17,8 @@
 │   └── REPOSITORY_STRUCTURE.md
 ├── models/
 ├── notebooks/
-│   └── customer_segmentation_analysis.ipynb
+│   ├── customer_segmentation_analysis.ipynb
+│   └── sections/
 ├── reports/
 │   └── figures/
 ├── src/
@@ -32,7 +33,7 @@
 - `docs/`: permanent project documentation.
 - `docs/presentation/`: submitted slide deck.
 - `models/`: generated model artifacts.
-- `notebooks/`: exploratory and academic notebooks.
+- `notebooks/`: preserved full academic notebook and derived smaller section notebooks.
 - `reports/`: generated metrics, labelled outputs, and figures.
 - `src/`: reusable package code.
 - `tests/`: automated test suite.

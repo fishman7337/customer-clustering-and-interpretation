@@ -17,7 +17,7 @@ Avoid opening public issues for sensitive security reports.
 
 ## Security Practices
 
-- CI runs Bandit static analysis on `src/`.
+- CI runs Bandit static analysis on `src/` and `scripts/`.
 - CI runs `pip-audit` for dependency vulnerability checks.
 - `.gitignore` excludes raw data, generated models, reports, virtual environments, and
   environment files.

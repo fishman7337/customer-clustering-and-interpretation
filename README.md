@@ -31,7 +31,7 @@ main clustering workflow focuses on:
 ├── data/                     # Local data drop zone; raw data is intentionally ignored
 ├── docs/                     # Project, model, MLOps, data, and governance documentation
 ├── models/                   # Generated model artifacts; ignored by git
-├── notebooks/                # Original exploratory academic notebook
+├── notebooks/                # Full original notebook plus smaller section notebooks
 ├── reports/                  # Generated metrics, labelled outputs, and figures
 ├── src/customer_segmentation # Tested Python package and CLI
 └── tests/                    # Pytest suite
@@ -73,18 +73,22 @@ Run the same local checks that CI runs:
 ```powershell
 ruff check .
 pytest
-bandit -c pyproject.toml -r src
+bandit -c pyproject.toml -r src scripts
 pip-audit --skip-editable .
 ```
 
 ## Notebook
 
-The original notebook is available at
+The original full notebook is available at
 `notebooks/customer_segmentation_analysis.ipynb`. It now points to the normalized project
 folders:
 
 - Input data: `../data/raw/CA2-Customer-Data.csv`
 - Saved models: `../models/`
+
+For easier review, the same notebook content is split into smaller phase notebooks under
+`notebooks/sections/`. The split notebooks preserve the full notebook's cells in order, and
+the test suite verifies that the split files recombine back to the original cell content.
 
 ## Documentation
 

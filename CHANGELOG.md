@@ -6,6 +6,10 @@ All notable changes to this project will be documented here.
 
 ### Added
 
+- Derived smaller notebooks under `notebooks/sections/` while retaining the full original
+  notebook.
+- Notebook split verification test that confirms the section notebooks preserve all cells in
+  order.
 - Production-style `src/customer_segmentation` package.
 - CLI for training K-Means and exporting model, metrics, and labelled segments.
 - Pytest coverage for data preparation, modeling, and CLI behavior.

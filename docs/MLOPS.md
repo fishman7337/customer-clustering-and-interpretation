@@ -15,7 +15,7 @@
 python -m pip install -r requirements-dev.txt
 ruff check .
 pytest
-bandit -c pyproject.toml -r src
+bandit -c pyproject.toml -r src scripts
 pip-audit --skip-editable .
 customer-segmentation train --data data/raw/CA2-Customer-Data.csv
 ```

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import numpy as np
 import pandas as pd
 import pytest
 
@@ -54,3 +55,58 @@ def test_prepare_customer_data_rejects_unknown_gender_values() -> None:
 
     with pytest.raises(DataValidationError, match="unsupported values"):
         prepare_customer_data(raw)
+
+
+def test_prepare_customer_data_rejects_conflicting_duplicate_customer_ids() -> None:
+    raw = pd.DataFrame(
+        {
+            "CustomerID": [1, "1"],
+            "Gender": ["Female", "Female"],
+            "Age": [20, 21],
+            "Income (k$)": [40, 42],
+            "How Much They Spend": [65, 61],
+        }
+    )
+
+    with pytest.raises(DataValidationError, match="conflicting duplicate IDs"):
+        prepare_customer_data(raw)
+
+
+@pytest.mark.parametrize("customer_id", [np.nan, np.inf, -np.inf, "not-a-number"])
+def test_prepare_customer_data_rejects_non_finite_customer_ids(customer_id) -> None:
+    raw = pd.DataFrame(
+        {
+            "CustomerID": [customer_id],
+            "Gender": ["Female"],
+            "Age": [20],
+            "Income (k$)": [40],
+            "How Much They Spend": [65],
+        }
+    )
+
+    with pytest.raises(DataValidationError, match="finite numeric values"):
+        prepare_customer_data(raw)
+
+
+@pytest.mark.parametrize(
+    ("column", "value"),
+    [
+        ("Age", np.nan),
+        ("Income (k$)", np.inf),
+        ("How Much They Spend", -np.inf),
+    ],
+)
+def test_prepare_customer_data_rejects_non_finite_model_features(column, value) -> None:
+    row = {
+        "CustomerID": [1],
+        "Gender": ["Female"],
+        "Age": [20],
+        "Income (k$)": [40],
+        "How Much They Spend": [65],
+    }
+    row[column] = [value]
+
+    with pytest.raises(DataValidationError, match="non-finite values") as error:
+        prepare_customer_data(pd.DataFrame(row))
+
+    assert column in str(error.value)

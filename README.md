@@ -29,7 +29,7 @@ main clustering workflow focuses on:
 - Outlier handling with the IQR method.
 - Feature scaling with standardization.
 - K-Means clustering with six customer segments by default.
-- Cluster evaluation using silhouette, Davies-Bouldin, Calinski-Harabasz, and inertia.
+- Cluster evaluation using silhouette, Davies-Bouldin, Calinski-Harabasz, and inertia in the same standardized feature space used to fit K-Means.
 - Model and report artifact generation through a command line interface.
 
 ## Repository Layout

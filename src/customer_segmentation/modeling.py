@@ -87,9 +87,10 @@ def train_kmeans_model(
     x = data.loc[:, features]
     pipeline = build_kmeans_pipeline(n_clusters=n_clusters, random_state=random_state)
     labels = pipeline.fit_predict(x)
+    scaled_features = pipeline.named_steps["scaler"].transform(x)
     clusterer = pipeline.named_steps["clusterer"]
     metrics = evaluate_clustering(
-        x,
+        scaled_features,
         labels,
         inertia=float(clusterer.inertia_),
     )
@@ -103,12 +104,12 @@ def train_kmeans_model(
 
 
 def evaluate_clustering(
-    data: pd.DataFrame,
+    data: pd.DataFrame | np.ndarray,
     labels: np.ndarray,
     *,
     inertia: float | None = None,
 ) -> ClusteringMetrics:
-    """Evaluate clustering labels with guardrails for degenerate label sets."""
+    """Evaluate labels in the same scaled feature space used for fitting."""
     unique_labels = np.unique(labels)
     n_samples = len(labels)
     n_clusters = len(unique_labels)

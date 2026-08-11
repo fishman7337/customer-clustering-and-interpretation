@@ -4,6 +4,15 @@ Production-ready repository for a customer clustering study using unsupervised m
 learning. The original academic notebook is preserved, while the reusable workflow is now
 packaged, tested, documented, and protected by CI checks.
 
+## Evidence and interpretation
+
+| Evidence-backed measure | Current repository evidence |
+| --- | --- |
+| Model comparison | The notebooks compare **3 clustering families**: K-Means, Agglomerative Clustering, and DBSCAN. |
+| Packaged default | The reusable workflow defaults to **6 K-Means segments** and reports four internal evaluation measures. |
+
+The qualitative outcome is an interpretable segmentation workflow with preprocessing, outlier handling, scaling, model comparison, and business-oriented profiles. Marketing implications are analytical interpretations, not measured campaign lift.
+
 ## Academic Context
 
 This project was completed under Singapore Polytechnic, School of Computing, Diploma in

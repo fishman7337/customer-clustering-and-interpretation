@@ -19,7 +19,6 @@ from customer_segmentation.modeling import save_model, train_kmeans_model
 
 def build_parser() -> argparse.ArgumentParser:
     """Build the CLI argument parser."""
-
     parser = argparse.ArgumentParser(
         prog="customer-segmentation",
         description="Train and export the customer segmentation K-Means model.",
@@ -59,7 +58,6 @@ def build_parser() -> argparse.ArgumentParser:
 
 def train_command(args: argparse.Namespace) -> int:
     """Run the training command and persist outputs."""
-
     raw_data = load_customer_data(args.data)
     prepared_data = prepare_customer_data(raw_data, drop_outliers=not args.keep_outliers)
     result = train_kmeans_model(
@@ -92,7 +90,6 @@ def train_command(args: argparse.Namespace) -> int:
 
 def main(argv: list[str] | None = None) -> int:
     """CLI entrypoint."""
-
     parser = build_parser()
     args = parser.parse_args(argv)
 

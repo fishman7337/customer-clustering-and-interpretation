@@ -31,7 +31,6 @@ class ClusteringMetrics:
 
     def to_dict(self) -> dict[str, float | int | None]:
         """Convert metrics to a JSON-serializable dictionary."""
-
         return asdict(self)
 
 
@@ -52,7 +51,6 @@ def build_kmeans_pipeline(
     n_init: int = 10,
 ) -> Pipeline:
     """Build the standard scaler plus K-Means pipeline used by this project."""
-
     return Pipeline(
         steps=[
             ("scaler", StandardScaler()),
@@ -79,7 +77,6 @@ def train_kmeans_model(
     random_state: int = 42,
 ) -> TrainingResult:
     """Train K-Means on prepared customer data and return labels plus metrics."""
-
     features = tuple(feature_columns)
     missing = sorted(set(features) - set(data.columns))
     if missing:
@@ -112,7 +109,6 @@ def evaluate_clustering(
     inertia: float | None = None,
 ) -> ClusteringMetrics:
     """Evaluate clustering labels with guardrails for degenerate label sets."""
-
     unique_labels = np.unique(labels)
     n_samples = len(labels)
     n_clusters = len(unique_labels)
@@ -139,7 +135,6 @@ def evaluate_clustering(
 
 def save_model(pipeline: Pipeline, path: str | Path) -> Path:
     """Persist a trained pipeline with joblib."""
-
     model_path = Path(path)
     model_path.parent.mkdir(parents=True, exist_ok=True)
     joblib.dump(pipeline, model_path)

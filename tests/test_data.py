@@ -22,9 +22,7 @@ def test_standardize_columns_accepts_common_mall_customer_aliases() -> None:
 
     standardized = standardize_columns(raw)
 
-    assert {"Gender", "Age", "Income (k$)", "How Much They Spend"} <= set(
-        standardized.columns
-    )
+    assert {"Gender", "Age", "Income (k$)", "How Much They Spend"} <= set(standardized.columns)
 
 
 def test_prepare_customer_data_drops_id_duplicates_and_income_outliers() -> None:

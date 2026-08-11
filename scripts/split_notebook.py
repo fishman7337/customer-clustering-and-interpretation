@@ -46,19 +46,16 @@ SPLITS = [
 
 def load_notebook(path: Path) -> dict:
     """Load a notebook as JSON."""
-
     return json.loads(path.read_text(encoding="utf-8"))
 
 
 def write_notebook(path: Path, notebook: dict) -> None:
     """Write a notebook with deterministic JSON formatting."""
-
     path.write_text(json.dumps(notebook, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
 def split_notebook() -> list[Path]:
     """Create smaller notebooks while preserving original cells exactly."""
-
     source = load_notebook(SOURCE_NOTEBOOK)
     cells = source["cells"]
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)

@@ -21,7 +21,6 @@ class DataValidationError(ValueError):
 
 def load_customer_data(path: str | Path) -> pd.DataFrame:
     """Load a customer CSV file and normalize common source column names."""
-
     csv_path = Path(path)
     if not csv_path.exists():
         raise FileNotFoundError(
@@ -33,7 +32,6 @@ def load_customer_data(path: str | Path) -> pd.DataFrame:
 
 def standardize_columns(data: pd.DataFrame) -> pd.DataFrame:
     """Return a copy of the data with known column aliases normalized."""
-
     normalized = data.copy()
     normalized.columns = [str(column).strip() for column in normalized.columns]
     return normalized.rename(columns=COLUMN_ALIASES)
@@ -44,7 +42,6 @@ def validate_customer_schema(
     required_columns: Iterable[str] = (*MODEL_FEATURES, GENDER_COLUMN),
 ) -> None:
     """Validate that all required customer columns are present."""
-
     missing = sorted(set(required_columns) - set(data.columns))
     if missing:
         raise DataValidationError(f"Missing required columns: {', '.join(missing)}")
@@ -57,7 +54,6 @@ def prepare_customer_data(
     outlier_columns: Iterable[str] = ("Income (k$)",),
 ) -> pd.DataFrame:
     """Clean the raw customer data into the feature table used by the model."""
-
     prepared = standardize_columns(data)
     validate_customer_schema(prepared)
 
@@ -71,9 +67,11 @@ def prepare_customer_data(
         prepared[column] = pd.to_numeric(prepared[column], errors="coerce")
 
     if prepared[list(MODEL_FEATURES)].isna().any().any():
-        bad_columns = prepared[list(MODEL_FEATURES)].columns[
-            prepared[list(MODEL_FEATURES)].isna().any()
-        ].tolist()
+        bad_columns = (
+            prepared[list(MODEL_FEATURES)]
+            .columns[prepared[list(MODEL_FEATURES)].isna().any()]
+            .tolist()
+        )
         columns = ", ".join(bad_columns)
         raise DataValidationError(f"Numeric columns contain invalid values: {columns}")
 
@@ -92,7 +90,6 @@ def prepare_customer_data(
 
 def remove_iqr_outliers(data: pd.DataFrame, *, columns: Iterable[str]) -> pd.DataFrame:
     """Remove rows outside the 1.5 IQR fences for the supplied columns."""
-
     filtered = data.copy()
     for column in columns:
         if column not in filtered.columns:

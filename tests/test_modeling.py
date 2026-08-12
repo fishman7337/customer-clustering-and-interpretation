@@ -3,6 +3,7 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 import pytest
+from sklearn.metrics import silhouette_score
 
 from customer_segmentation.modeling import train_kmeans_model
 
@@ -33,6 +34,8 @@ def test_train_kmeans_model_returns_labels_and_metrics() -> None:
     assert result.metrics.n_samples == len(customers)
     assert result.metrics.silhouette_score > 0
     assert result.metrics.inertia is not None
+    scaled = result.pipeline.named_steps["scaler"].transform(customers)
+    assert result.metrics.silhouette_score == pytest.approx(silhouette_score(scaled, result.labels))
 
 
 def test_train_kmeans_model_requires_more_rows_than_clusters() -> None:
